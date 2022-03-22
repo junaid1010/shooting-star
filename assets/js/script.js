@@ -123,7 +123,7 @@ statEl2.appendChild(currentStat2El)
 }
 
 // autocomplete cities that have pro NBA/NHL teams
-$( function() {
+$(function () {
     var availableTags = [
         "Atlanta",
         "Boston",
@@ -174,12 +174,12 @@ $( function() {
         "Paradise",
         "Salt Lake City",
         "Washington",
-        "Winnipeg"        
+        "Winnipeg"
     ];
-    $( ".auto-complete" ).autocomplete({
-      source: availableTags
+    $(".auto-complete").autocomplete({
+        source: availableTags
     });
-  } );
+});
 
 // test run of the function
 getStats('atlanta','new york')
