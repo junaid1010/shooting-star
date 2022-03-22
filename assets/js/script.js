@@ -128,5 +128,64 @@ statEl2.appendChild(currentStat2El)
 }
 }}
 
+// autocomplete cities that have pro NBA/NHL teams
+$( function() {
+    var availableTags = [
+        "Atlanta",
+        "Boston",
+        "Brooklyn",
+        "Buffalo",
+        "Calgary",
+        "Charlotte",
+        "Chicago",
+        "Cleveland",
+        "Columbus",
+        "Dallas",
+        "Denver",
+        "Detroit",
+        "Edmonton",
+        "Glendale",
+        "Houston",
+        "Indianapolis",
+        "Los Angeles",
+        "Memphis",
+        "Miami",
+        "Milwaukee",
+        "Minneapolis",
+        "Montreal",
+        "Nashville",
+        "Newark",
+        "New Orleans",
+        "New York City",
+        "Oklahoma City",
+        "Orlando",
+        "Ottawa",
+        "Philadelphia",
+        "Phoenix",
+        "Pittsburgh",
+        "Portland",
+        "Raleigh",
+        "Sacramento",
+        "Saint Paul",
+        "San Antonio",
+        "San Francisco",
+        "San Jose",
+        "Seattle",
+        "St. Louis",
+        "Sunrise",
+        "Tampa",
+        "Toronto",
+        "Uniondale",
+        "Vancouver",
+        "Paradise",
+        "Salt Lake City",
+        "Washington",
+        "Winnipeg"        
+    ];
+    $( ".auto-complete" ).autocomplete({
+      source: availableTags
+    });
+  } );
+
 // test run of the function
 getStats('atlanta','new york')
