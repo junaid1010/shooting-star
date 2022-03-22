@@ -9,3 +9,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.ui-menu-item {
+    list-style: none;
+}

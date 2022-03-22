@@ -182,4 +182,4 @@ $( function() {
   } );
 
 // test run of the function
-getStats('atlanta','new york')
+//getStats('atlanta','new york')
