@@ -6,7 +6,7 @@ var teamName = []
 // does 4 api calls to get our stats for the two teams
 async function getStats(city) {
 
-
+// first call to get the data for the team by city
     const response = await fetch("https://api-nba-v1.p.rapidapi.com/teams?search=" + city, {
         method: "GET",
         headers: {
@@ -16,10 +16,12 @@ async function getStats(city) {
       }).catch((err) => {
         console.error(err);
       });
-
+//  saves the city name and gets the teamname(which is city and then name together) and saves it globally
       const data = await response.json()
       var city = data.response[0].city
       teamName.push(data.response[0].name)
+
+    //   second fetch using the team id
       const response2 = await fetch(
         "https://api-nba-v1.p.rapidapi.com/teams/statistics?id=" +
           data.response[0].id +
@@ -36,12 +38,14 @@ async function getStats(city) {
         console.error(err);
       });
 const data2 = await response2.json()
+// returns the city name and the data as an object
 return {data2,city}
 
 }
 
 // this lets me show all the stats on the page!
 async function showStats(city1, city2) {
+    // empties team array in case we call getStats a second time without reloading the page
     teamName = []
   var [stats1, stats2] = await Promise.all([
     getStats(city1),
@@ -162,5 +166,5 @@ $(function () {
 });
 
 // test run of the function
-showStats("atlanta", "new york");
+// showStats("atlanta", "new york");
 
