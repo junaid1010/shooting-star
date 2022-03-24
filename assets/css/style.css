@@ -23,3 +23,12 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
 }
+#savedCity {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.versus {
+    border-color: black;
+    border-radius: 3px;
+}

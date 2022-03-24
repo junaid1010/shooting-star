@@ -109,7 +109,6 @@ async function showStats(city1, city2) {
   console.log(teamName)
 }
 
-
 // check form and submit cities
 var submitCities = function(submitForm) {
     submitForm.preventDefault();
@@ -121,7 +120,7 @@ var submitCities = function(submitForm) {
         alert("You haven't entered your name!");
     } else {
         storeCities(city1Name, city2Name);
-//        showStats(city1Name, city2Name);
+        showStats(city1Name, city2Name);
     }
 }
 
@@ -173,15 +172,17 @@ var storeCities = function(city1Name, city2Name) {
 var loadCities = function() {
     lastCities = JSON.parse(localStorage.getItem("lastcities"));
     if (lastCities) {
-        console.log(lastCities);
+        console.log(lastCities.city1Name, lastCities.city2Name);
+        writeCities(lastCities.city1Name, lastCities.city2Name);
     }  
 }
 
 // write last set of cities to page
 var writeCities = function(city1Name, city2Name) {
-    var cityListEl = document.createElement("div");
-    cityListEl.innerHTML = "<span class='btn' data-city1='" + city1Name + "' data-city2='" + city1Name + "'>" + city1Name + " vs " + city2Name + "</span>";
+    var cityListEl = document.createElement("p");
+    cityListEl.innerHTML = "<span class='versus' data-city1='" + city1Name + "' data-city2='" + city1Name + "'>Last Search: " + city1Name + " vs " + city2Name + "</span>";
     savedCityEl.appendChild(cityListEl);
+//    savedCityEl.addEventListener("click", showStats(city1Name, city2Name));
 }
 
 // test run of the function
