@@ -172,6 +172,9 @@ var storeCities = function(city1Name, city2Name) {
 // load from localstorage
 var loadCities = function() {
     lastCities = JSON.parse(localStorage.getItem("lastcities"));
+    if (lastCities) {
+        console.log(lastCities);
+    }  
 }
 
 // write last set of cities to page
@@ -185,3 +188,4 @@ var writeCities = function(city1Name, city2Name) {
 // showStats("atlanta", "new york");
 
 formOneEl.addEventListener("submit", submitCities);
+loadCities();
