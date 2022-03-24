@@ -56,19 +56,30 @@ console.log(teamName)
 //here we start with that second call
   var getEvent = "https://www.thesportsdb.com/api/v1/json/2/searchevents.php?e=" + teamName[0] + "_vs_" + teamName[1];
 
-  fetch(getEvent).then(function(response) {
-  response.json().then(function(data) {
-    console.log(data);
-
-    for (var i = 0; i < response.length; i++) {
-
-    //update index.html
+    fetch(getEvent)
+        .then(response => {
+         if (!response.ok) {
+             throw Error('Error');
+    }
+        return response.json();
+    })  
+    .then(data => {
+        const html = data.data.map(event => {
+            return `<h1>${event.strEvent}<h1>`;
+        })
+        .join("");
+        console.log(html);
+        document.querySelector(".containter").insertAdjacentHTML("afterbegin", html);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+    
     
 
     }
 
-    });
-  });
+
    
  
 //   console.log(firstResult);
@@ -125,7 +136,7 @@ console.log(teamName)
     statEl2.appendChild(currentStat2El);
   }
   console.log(teamName)
-}
+
 
 // autocomplete cities that have NBA teams
 $(function () {
@@ -166,5 +177,5 @@ $(function () {
 });
 
 // test run of the function
-//showStats("atlanta", "new york");
-
+showStats("atlanta", "new york");
+getEvent();
