@@ -60,13 +60,10 @@ console.log(teamName)
   response.json().then(function(data) {
     console.log(data);
 
-    const event = data.event;
+    for (var i = 0; i < response.length; i++) {
 
     //update index.html
-    eventDetails.innerHTML = `
-    <h2>${event.strEvent}<h2>`;
-
-    const updateUI = (data) => {
+    
 
     }
 
