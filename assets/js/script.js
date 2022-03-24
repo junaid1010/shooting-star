@@ -1,5 +1,6 @@
 var statEl1 = document.querySelector("#city1Stats");
 var statEl2 = document.querySelector("#city2Stats");
+const eventDetails = document.querySelector('eventDetails');
 // sets stats as global since I call them in two functions
 
 var teamName = []
@@ -51,10 +52,32 @@ async function showStats(city1, city2) {
     getStats(city1),
     getStats(city2),
   ]);
+console.log(teamName)
+//here we start with that second call
+  var getEvent = "https://www.thesportsdb.com/api/v1/json/2/searchevents.php?e=" + teamName[0] + "_vs_" + teamName[1];
+
+  fetch(getEvent).then(function(response) {
+  response.json().then(function(data) {
+    console.log(data);
+
+    const event = data.event;
+
+    //update index.html
+    eventDetails.innerHTML = `
+    <h2>${event.strEvent}<h2>`;
+
+    const updateUI = (data) => {
+
+    }
+
+    });
+  });
+   
+ 
 //   console.log(firstResult);
 //   console.log(secondResult);
-var data = await fetch('https://www.thesportsdb.com/api/v1/json/2/searchevents.php?e='+teamName[0]+'_vs_Atlanta%20Hawks')
-console.log(data)
+
+
   // adds city names to their respective containers
   var city1NameEl = document.createElement("h2");
   var city2NameEl = document.createElement("h2");
@@ -146,5 +169,5 @@ $(function () {
 });
 
 // test run of the function
-// showStats("atlanta", "new york");
+//showStats("atlanta", "new york");
 
