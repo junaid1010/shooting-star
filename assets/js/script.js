@@ -3,6 +3,7 @@ var statEl2 = document.querySelector("#city2Stats");
 // sets stats as global since I call them in two functions
 
 var formOneEl = document.querySelector("#formOne");
+var savedCityEl = document.querySelector("#savedCity");
 
 var teamName = []
 // does 4 api calls to get our stats for the two teams
@@ -119,7 +120,8 @@ var submitCities = function(submitForm) {
         if (!city1Name || !city2Name) {
         alert("You haven't entered your name!");
     } else {
-        showStats(city1Name, city2Name);
+        storeCities(city1Name, city2Name);
+//        showStats(city1Name, city2Name);
     }
 }
 
@@ -144,7 +146,7 @@ $(function () {
         "Milwaukee",
         "Minneapolis",
         "New Orleans",
-        "New York City",
+        "New York",
         "Oklahoma City",
         "Orlando",
         "Philadelphia",
@@ -160,6 +162,24 @@ $(function () {
         source: availableTags
     });
 });
+
+// save to localstorage
+var storeCities = function(city1Name, city2Name) {
+    var lastCities = {city1Name: city1Name, city2Name: city2Name};
+    localStorage.setItem("lastcities", JSON.stringify(lastCities));
+}
+
+// load from localstorage
+var loadCities = function() {
+    lastCities = JSON.parse(localStorage.getItem("lastcities"));
+}
+
+// write last set of cities to page
+var writeCities = function(city1Name, city2Name) {
+    var cityListEl = document.createElement("div");
+    cityListEl.innerHTML = "<span class='btn' data-city1='" + city1Name + "' data-city2='" + city1Name + "'>" + city1Name + " vs " + city2Name + "</span>";
+    savedCityEl.appendChild(cityListEl);
+}
 
 // test run of the function
 // showStats("atlanta", "new york");
