@@ -3,6 +3,8 @@ var statEl2= document.querySelector("#city2Stats")
 // sets stats as global since I call them in two functions
 var stats1=''
 var stats2=''
+var teamName1
+var teamName2
 var promiseArray = []
 var responseArray = []
 // does 4 api calls to get our stats for the two teams
@@ -15,10 +17,15 @@ var responseArray = []
 		"x-rapidapi-host": "api-nba-v1.p.rapidapi.com",
 		"x-rapidapi-key": "2d7170db45mshc002aca3b426819p1fb5b5jsn7f819f5ce9c8"
 	}
+  
+   
 })
+
 .then(response => {
 	response.json().then(function(data){
         // take the city name because its always capitalized
+         teamName1 = data.response[0].name 
+        console.log(teamName1)
         city1 = data.response[0].city 
     //    so I take the id and then get the stats for the team, 
         fetch("https://api-nba-v1.p.rapidapi.com/teams/statistics?id=" + data.response[0].id + "&season=2021", {
@@ -32,6 +39,7 @@ var responseArray = []
             // I save the stats in a variable and then I run the same 2 calls again but for the second city, at the end running showStats
             response.json().then(function(data){
 stats1=data
+console.log(data)
 responseArray.push("city1")
 showStats(city1,city2)
             })
@@ -56,6 +64,8 @@ fetch("https://api-nba-v1.p.rapidapi.com/teams?search="+city2, {
 .then(response => {
 	response.json().then(function(data){
        city2 = data.response[0].city
+       teamName2 = data.response[0].name
+       console.log(teamName2)
         fetch("https://api-nba-v1.p.rapidapi.com/teams/statistics?id=" + data.response[0].id + "&season=2021", {
             "method": "GET",
             "headers": {
