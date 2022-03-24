@@ -10,6 +10,10 @@ body {
     justify-content: center;
 }
 
+#formOne {
+    display: flex;
+}
+
 .ui-menu-item {
     list-style: none;
 }
